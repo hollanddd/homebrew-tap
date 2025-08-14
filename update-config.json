@@ -1,0 +1,13 @@
+{
+  "github": {
+    "owner": "hollanddd",
+    "repo": "lam"
+  },
+  "formula": {
+    "file": "Formula/lamb.rb",
+    "class_name": "Lamb"
+  },
+  "archive": {
+    "url_template": "https://github.com/{owner}/{repo}/archive/refs/tags/{tag}.tar.gz"
+  }
+}
