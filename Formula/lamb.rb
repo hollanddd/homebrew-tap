@@ -1,8 +1,8 @@
 class Lamb < Formula
   desc "Launch Agent Manager - Terminal UI for managing macOS LaunchAgent plist files"
   homepage "https://github.com/hollanddd/lam"
-  url "https://github.com/hollanddd/lam/archive/refs/tags/v0.1.1.tar.gz"
-  sha256 "5bc94a58d35de0e7bf6800b70c89c38d55bd4021690c0802a8d4d703032e3560"
+  url "https://github.com/hollanddd/lam/archive/refs/tags/v0.1.2.tar.gz"
+  sha256 "70d72d536ba3c31903e008e1cc194a288b070bb2b773caca510a1fb32fdc3cfb"
   license "MIT"
   head "https://github.com/hollanddd/lam.git", branch: "main"
 
