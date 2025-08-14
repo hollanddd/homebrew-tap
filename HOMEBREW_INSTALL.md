@@ -1,10 +1,10 @@
-# Homebrew Installation Guide for LAM
+# Homebrew Installation Guide for LAM (Based)
 
 This guide explains how to create and publish a Homebrew formula for LAM (Launch Agent Manager).
 
 ## Formula File
 
-The `lam.rb` file contains the Homebrew formula. Key points:
+The `lamb.rb` file contains the Homebrew formula. Key points:
 
 ### Before Publishing
 
@@ -13,7 +13,7 @@ The `lam.rb` file contains the Homebrew formula. Key points:
    ```bash
    curl -sL https://github.com/hollanddd/lam/archive/refs/tags/v0.1.1.tar.gz | sha256sum
    ```
-3. **Update the SHA256** in `lam.rb` by replacing `REPLACE_WITH_ACTUAL_SHA256`
+3. **Update the SHA256** in `lamb.rb` by replacing `REPLACE_WITH_ACTUAL_SHA256`
 
 ## Publishing Options
 
@@ -24,7 +24,7 @@ The `lam.rb` file contains the Homebrew formula. Key points:
 3. Users can install with:
    ```bash
    brew tap hollanddd/homebrew-tap
-   brew install lam
+   brew install lamb
    ```
 
 ### Option 2: Submit to Homebrew Core

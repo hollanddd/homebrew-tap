@@ -1,4 +1,4 @@
-class Lam < Formula
+class Lamb < Formula
   desc "Launch Agent Manager - Terminal UI for managing macOS LaunchAgent plist files"
   homepage "https://github.com/hollanddd/lam"
   url "https://github.com/hollanddd/lam/archive/refs/tags/v0.1.1.tar.gz"
@@ -10,12 +10,14 @@ class Lam < Formula
 
   def install
     system "cargo", "install", *std_cargo_args
+    # Rename binary to avoid conflict with existing 'lam' command
+    mv bin/"lam", bin/"lamb"
   end
 
   test do
     # Since this is a TUI app that requires macOS LaunchAgent directories,
     # we'll just test that the binary was installed and can show help/version
-    assert_match "Launch Agent Manager", shell_output("#{bin}/lam --help 2>&1", 1)
+    assert_match "Launch Agent Manager", shell_output("#{bin}/lamb --help 2>&1", 1)
   end
 
   def caveats
@@ -25,7 +27,7 @@ class Lam < Formula
         - Global: /Library/LaunchAgents  
         - Apple: /System/Library/LaunchAgents
 
-      Run with: lam
+      Run with: lamb
 
       Note: This application uses vim-style keybindings. Press 'q' to quit.
     EOS

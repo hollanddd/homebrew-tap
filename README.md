@@ -6,17 +6,17 @@ This is a Homebrew tap for [LAM (Launch Agent Manager)](https://github.com/holla
 
 ```bash
 # Add the tap
-brew tap hollanddd/lam
+brew tap hollanddd/homebrew-tap
 
-# Install lam
-brew install lam
+# Install lamb
+brew install lamb
 ```
 
 ## Usage
 
 After installation, run:
 ```bash
-lam
+lamb
 ```
 
 LAM provides a vim-style terminal interface for managing your macOS LaunchAgents with real-time status monitoring and editing capabilities.
