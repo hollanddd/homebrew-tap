@@ -1,0 +1,74 @@
+name: Update git-standup formula
+
+on:
+  repository_dispatch:
+    types: [update-git-standup]
+
+permissions:
+  contents: write
+
+jobs:
+  update-formula:
+    name: Update formula
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update Formula/git-standup.rb
+        run: |
+          VERSION="${{ github.event.client_payload.version }}"
+          SHA_AARCH64_APPLE="${{ github.event.client_payload.sha_aarch64_apple }}"
+          SHA_X86_64_APPLE="${{ github.event.client_payload.sha_x86_64_apple }}"
+          SHA_X86_64_LINUX="${{ github.event.client_payload.sha_x86_64_linux }}"
+          SHA_AARCH64_LINUX="${{ github.event.client_payload.sha_aarch64_linux }}"
+
+          cat > Formula/git-standup.rb << RUBY
+          class GitStandup < Formula
+            desc "Recall what you did on the last working day - or see what someone else did"
+            homepage "https://github.com/hollanddd/git-standup-rs"
+            version "${VERSION}"
+            license "MIT"
+
+            on_macos do
+              on_arm do
+                url "https://github.com/hollanddd/git-standup-rs/releases/download/v${VERSION}/git-standup-aarch64-apple-darwin.tar.gz"
+                sha256 "${SHA_AARCH64_APPLE}"
+              end
+              on_intel do
+                url "https://github.com/hollanddd/git-standup-rs/releases/download/v${VERSION}/git-standup-x86_64-apple-darwin.tar.gz"
+                sha256 "${SHA_X86_64_APPLE}"
+              end
+            end
+
+            on_linux do
+              on_arm do
+                url "https://github.com/hollanddd/git-standup-rs/releases/download/v${VERSION}/git-standup-aarch64-unknown-linux-gnu.tar.gz"
+                sha256 "${SHA_AARCH64_LINUX}"
+              end
+              on_intel do
+                url "https://github.com/hollanddd/git-standup-rs/releases/download/v${VERSION}/git-standup-x86_64-unknown-linux-gnu.tar.gz"
+                sha256 "${SHA_X86_64_LINUX}"
+              end
+            end
+
+            def install
+              bin.install "git-standup"
+            end
+
+            test do
+              assert_match "git-standup", shell_output("#{bin}/git-standup --version")
+            end
+          end
+          RUBY
+
+          # Remove leading whitespace from heredoc
+          sed -i 's/^          //' Formula/git-standup.rb
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Formula/git-standup.rb
+          git commit -m "Update git-standup to ${{ github.event.client_payload.version }}"
+          git push
