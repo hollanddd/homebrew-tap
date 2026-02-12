@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Update Formula/git-standup.rb
+      - name: Update Formula/git-standup-rs.rb
         run: |
           VERSION="${{ github.event.client_payload.version }}"
           SHA_AARCH64_APPLE="${{ github.event.client_payload.sha_aarch64_apple }}"
@@ -23,8 +23,8 @@ jobs:
           SHA_X86_64_LINUX="${{ github.event.client_payload.sha_x86_64_linux }}"
           SHA_AARCH64_LINUX="${{ github.event.client_payload.sha_aarch64_linux }}"
 
-          cat > Formula/git-standup.rb << RUBY
-          class GitStandup < Formula
+          cat > Formula/git-standup-rs.rb << RUBY
+          class GitStandupRs < Formula
             desc "Recall what you did on the last working day - or see what someone else did"
             homepage "https://github.com/hollanddd/git-standup-rs"
             version "${VERSION}"
@@ -63,12 +63,12 @@ jobs:
           RUBY
 
           # Remove leading whitespace from heredoc
-          sed -i 's/^          //' Formula/git-standup.rb
+          sed -i 's/^          //' Formula/git-standup-rs.rb
 
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Formula/git-standup.rb
+          git add Formula/git-standup-rs.rb
           git commit -m "Update git-standup to ${{ github.event.client_payload.version }}"
           git push

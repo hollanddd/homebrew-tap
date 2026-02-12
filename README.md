@@ -1,33 +1,29 @@
-# Homebrew Tap for LAM
+# Homebrew Tap
 
-This is a Homebrew tap for [LAM (Launch Agent Manager)](https://github.com/hollanddd/lam) - a terminal UI for managing macOS LaunchAgent plist files.
+A Homebrew tap for tools by [hollanddd](https://github.com/hollanddd).
 
 ## Installation
 
 ```bash
-# Add the tap
 brew tap hollanddd/homebrew-tap
-
-# Install lamb
-brew install lamb
 ```
 
-## Usage
+## Formulas
 
-After installation, run:
+### git-standup-rs
+
+Recall what you did on the last working day - a Rust port of [git-standup](https://github.com/hollanddd/git-standup-rs).
+
 ```bash
-lamb
+brew install hollanddd/homebrew-tap/git-standup-rs
 ```
 
-LAM provides a vim-style terminal interface for managing your macOS LaunchAgents with real-time status monitoring and editing capabilities.
+Prebuilt binaries are provided for macOS (ARM/Intel) and Linux (x86_64/ARM). No Rust toolchain required.
 
-## About
+### lamb
 
-LAM is designed specifically for macOS and provides:
-- Service-style agent browser with real-time status
-- Vim navigation and keybindings
-- Editable form interface for plist files
-- Automatic reload after saving changes
-- Search and filtering capabilities
+A terminal UI for managing macOS LaunchAgent plist files. See [LAM](https://github.com/hollanddd/lam).
 
-For more information, visit the [main repository](https://github.com/hollanddd/lam).
+```bash
+brew install hollanddd/homebrew-tap/lamb
+```
